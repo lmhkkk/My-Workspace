@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import SmartstoreComponent from './SmartPhoneStore/SmartstoreComponent';
+// import Car from './Car/Car';
+// import DemoState from './day_02/DemoState';
+// import Shopping from './day_01/Shopping/Homepage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Shopping /> */}
+      {/* <DemoState /> */}
+      {/* <Car /> */}
+      <SmartstoreComponent />
     </div>
   );
 }
