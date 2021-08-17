@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import SmartstoreComponent from './SmartPhoneStore/SmartstoreComponent';
+import BugerStoreComponents from './BurgerStore/BugerStoreComponents';
+// import SmartstoreComponent from './SmartPhoneStore/SmartstoreComponent';
 // import Car from './Car/Car';
 // import DemoState from './day_02/DemoState';
 // import Shopping from './day_01/Shopping/Homepage';
@@ -11,7 +12,8 @@ function App() {
       {/* <Shopping /> */}
       {/* <DemoState /> */}
       {/* <Car /> */}
-      <SmartstoreComponent />
+      {/* <SmartstoreComponent /> */}
+      <BugerStoreComponents />
     </div>
   );
 }
