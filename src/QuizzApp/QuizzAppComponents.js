@@ -69,6 +69,7 @@ class QuizzAppComponents extends Component {
 	}
 	onSubmitHandler=e=>{
 		e.preventDefault();
+		
 	}
 render() {
 	const { selectedQuiz } = this.state;
