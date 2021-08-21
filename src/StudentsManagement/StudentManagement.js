@@ -17,11 +17,23 @@ class StudentManagement extends Component {
 		this.setState({
 			students:newStudents,
 		})
+	}
+	onUpdateStudents=(newStudent,originStudent)=>{
+		const {students} = this.state;
+		if(students.length===1){
+			this.setState({
+				students:[newStudent],
+			})
+		}else{
+			const idx = students.findIndex((student)=>student.id===originStudent.id);
+			students[idx] = newStudent;
+			this.setState({
+				students:students,
+			})
+		}
+	}
 
-	}
-	onModifyStudent=(studentItem)=>{
-		console.log(studentItem)
-	}
+
   render() {
     return (
       <div className="container">
@@ -32,7 +44,7 @@ class StudentManagement extends Component {
         <StudentTable
           students={this.state.students}
 					onDeleteStudent = {this.onDeleteStudent}
-					onModifyStudent = {this.onModifyStudent}
+					onUpdateStudents={this.onUpdateStudents}
         />
       </div>
     );

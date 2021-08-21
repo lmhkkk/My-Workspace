@@ -9,7 +9,16 @@ const FULLNAME = 4;
 class StudentTable extends Component {
 	state = {
 		sortType: DEFAULT,
-		studentInfo:{},
+		editStudents: {
+			id: "",
+			fullname: "",
+			phoneNumber: "",
+			email: "",
+			math: "",
+			phy: "",
+			chem: "",
+		},
+		tempStudents:{},
 	};
 
 	onChangeSortType = (e) => {
@@ -18,20 +27,28 @@ class StudentTable extends Component {
 			sortType: +e.target.value,
 		});
 	};
-	onChangleHandler =(e) =>{
-		const{name,value} = e.target;
-		const {students} = this.props;
-		students.setState({
-			[name]:value,
+	editStudents = (student) => {
+		this.setState({
+			editStudents: student,
+			tempStudents: student,
 		})
-	}
-	onSaveHandler = (e) => {
 
 	}
-
+	onEditHandler = e => {
+		const { name, value } = e.target;
+		this.setState({
+			editStudents:{...this.state.editStudents,
+				[name]:value,
+			}
+		});
+	}
+	onSaveHandler=e=>{
+		e.preventDefault();
+		this.props.onUpdateStudents(this.state.editStudents,this.state.tempStudents);
+	}
 
 	render() {
-		const { students, onDeleteStudent  } = this.props;
+		const { students, onDeleteStudent } = this.props;
 		const { sortType } = this.state;
 		let newStudent = [];
 		newStudent = students.map((student) => {
@@ -101,7 +118,7 @@ class StudentTable extends Component {
 					<tbody>
 						{students.length > 0 ? (
 							newStudent.map((studentItem, index) => {
-								const { id, fullname, phoneNumber, email, math, phy, chem, gpa } = studentItem;
+								const { id, fullname, phoneNumber, email,gpa } = studentItem;
 
 								return (
 									<tr key={index}>
@@ -114,7 +131,7 @@ class StudentTable extends Component {
 											<div className="d-flex justify-content-center align-item-center">
 												{/* <!-- Button trigger modal --> */}
 												<div>
-													<button type="button" className="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+													<button type="button" className="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => this.editStudents(studentItem)} >
 														Sửa
 													</button>
 													{/* Modal */}
@@ -126,7 +143,7 @@ class StudentTable extends Component {
 																	<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
 																</div>
 																<div className="modal-body fw-bold ">
-																<div>
+																	<div>
 																		<form onSubmit={this.onSaveHandler}>
 																			<div className="row">
 																				<div className="col-6">
@@ -135,10 +152,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="id"
-																							value={id}
+																							value={this.state.editStudents.id}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -148,10 +165,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="fullname"
-																							value={fullname}
+																							value={this.state.editStudents.fullname}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -161,10 +178,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="phoneNumber"
-																							value={phoneNumber}
+																							value={this.state.editStudents.phoneNumber}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -174,10 +191,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="email"
-																							value={email}
+																							value={this.state.editStudents.email}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -187,10 +204,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="math"
-																							value={math}
+																							value={this.state.editStudents.math}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -200,10 +217,10 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="phy"
-																							value={phy}
+																							value={this.state.editStudents.phy}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
@@ -213,16 +230,16 @@ class StudentTable extends Component {
 																						<input
 																							type="text"
 																							name="chem"
-																							value={chem}
+																							value={this.state.editStudents.chem}
 																							className="form-control"
 																							aria-describedby="helpId"
-																							onChange={this.onChangleHandler}
+																							onChange={this.onEditHandler}
 																						/>
 																					</div>
 																				</div>
 																			</div>
 																			<div className="modal-footer border-top-0">
-																				<button type="submit" className="btn btn-primary my-3">Lưu</button>
+																				<button type="submit" className="btn btn-primary my-3"  data-bs-dismiss="modal">Lưu</button>
 																				<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
 																			</div>
 																		</form>
