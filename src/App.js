@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import StudentManagement from './StudentsManagement/StudentManagement';
-// import QuizzAppComponents from './QuizzApp/QuizzAppComponents';
+// import StudentManagement from './StudentsManagement/StudentManagement';
+import QuizzAppComponents from './QuizzApp/QuizzAppComponents';
 // import BugerStoreComponents from './BurgerStore/BugerStoreComponents';
 // import SmartstoreComponent from './SmartPhoneStore/SmartstoreComponent';
 // import Car from './Car/Car';
@@ -16,8 +16,8 @@ function App() {
       {/* <Car /> */}
       {/* <SmartstoreComponent /> */}
       {/* <BugerStoreComponents /> */}
-      {/* <QuizzAppComponents /> */}
-      <StudentManagement />
+      <QuizzAppComponents />
+      {/* <StudentManagement /> */}
     </div>
   );
 }

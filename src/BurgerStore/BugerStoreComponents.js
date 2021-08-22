@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BurgerBuilder from './BurgerBuilder';
 import BurgerOrder from './BurgerOrder';
+import './Burger.css'
 
 class BugerStoreComponents extends Component {
 	constructor(props) {

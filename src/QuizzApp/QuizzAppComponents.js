@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import QuestionComponent from './QuestionComponent';
+import React, { Component } from "react";
+import QuestionComponent from "./QuestionComponent";
+import ResultComponent from "./ResultComponent";
+import './QuizzApp.css'
 
 class QuizzAppComponents extends Component {
 	constructor(props) {
@@ -45,7 +47,7 @@ class QuizzAppComponents extends Component {
 						d: "none of the above",
 					},
 					id: 4,
-				}
+				},
 			],
 			selectedQuiz: {
 				question: "Which language runs in a web browser?",
@@ -57,31 +59,85 @@ class QuizzAppComponents extends Component {
 				},
 				id: 1,
 			},
-			correct: { 1: "d", 2: "b", 3: "a", 4: "b" },
+			correctAnswer: [
+				{
+					id:1,
+					answer:"d",
+				},
+				{
+					id:2,
+					answer:"b",
+				},
+				{
+					id:3,
+					answer:"a",
+				},
+				{
+					id:4,
+					answer:"b",
+				},
+			],
+			isFinish: false,
+			result:[]
+		};
+	}
+	onChangeNewQuizz = (id) => {
+		const { quizData } = this.state;
+		const idx = quizData.findIndex((quizz) => quizz.id === id);
+
+		if (idx < quizData.length - 1) {
+			this.setState({
+				selectedQuiz: quizData[idx + 1],
+			});
 		}
-	}
-	onHandleChange =e=>{
-		const { name, value } = e.target;
-		console.log(name)
+		else {
+			this.setState({
+				isFinish: true,
+			});
+		}
+	};
+	onCheckUserAnswer = (selectedAnswer) => {
+		const { id, answer } = selectedAnswer;
+		const {correctAnswer} = this.state;
+		let finalResult = false;
+		for(const item in correctAnswer){
+			if(correctAnswer[item].id===id){
+				if(correctAnswer[item].answer===answer){
+					finalResult=true;
+				}
+			}
+		}
+		let newUserAnswer = {
+			id:id,
+			answer:answer,
+			res:finalResult,
+		}
 		this.setState({
-		  [name]: value
-		});
+			result: [
+				...this.state.result,newUserAnswer
+			]
+		})
 	}
-	onSubmitHandler=e=>{
-		e.preventDefault();
-		
-	}
-render() {
-	const { selectedQuiz } = this.state;
-	return (
-		<div className="quiz-body">
-			<div className="quiz-container">
-				<QuestionComponent selectedQuiz={selectedQuiz} onHandleChange={this.onHandleChange} onSubmitHandler = {this.onSubmitHandler} />
+
+	render() {
+		const { quizData, selectedQuiz, isFinish,result } = this.state;
+		return (
+			<div className="quiz-body">
+				<div className="quiz-container">
+					{!isFinish ?
+						<QuestionComponent
+							quizData={quizData}
+							selectedQuiz={selectedQuiz}
+							onChangeNewQuizz={this.onChangeNewQuizz}
+							onCheckUserAnswer={this.onCheckUserAnswer}
+						/> :
+						<ResultComponent
+						result={result}
+						/>
+					}
+				</div>
 			</div>
-		</div>
-
-	);
-
-}
+		);
+	}
 }
 export default QuizzAppComponents;
