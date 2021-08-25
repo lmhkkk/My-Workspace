@@ -26,6 +26,7 @@ class BurgerBuilder extends Component {
 						{isOrder?burgerRender:
 							<p className="text-center">Let's choose your custom Burger</p>
 						}
+						
 					{/* <!-- Phần bánh burger phía dươi --> */}
 					<div class="bread-bottom"></div>
 				</div>

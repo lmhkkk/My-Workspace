@@ -5,7 +5,6 @@ class Cart extends Component {
 		const {order,totalPrice} = this.props;
 		const isOrder = Object.values(order).some((item)=>item!==0);
 
-
 		return (
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog">

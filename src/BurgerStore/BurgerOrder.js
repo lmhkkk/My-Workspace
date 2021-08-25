@@ -10,7 +10,6 @@ class BurgerOrder extends Component {
 			for (let toppingItem of topping) {
 					totalPrice += order[toppingItem.key] * toppingItem.price;
 			}
-
 		return (
 			<div>
 				<table class="table table-l table-borderless caption-top ">

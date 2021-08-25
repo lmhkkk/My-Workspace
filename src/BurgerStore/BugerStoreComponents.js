@@ -19,17 +19,18 @@ class BugerStoreComponents extends Component {
 					key: "cheese"
 				},
 				{
-					name: "Meat",
-					img: <div className="meat"></div>,
-					price: 25,
-					key: "meat"
-				},
-				{
 					name: "Bacon",
 					img: <div className="bacon"></div>,
 					price: 28,
 					key: "bacon"
 				},
+				{
+					name: "Meat",
+					img: <div className="meat"></div>,
+					price: 25,
+					key: "meat"
+				},
+
 
 			],
 			order: { salad: 0, cheese: 0, meat: 0, bacon: 0 },
