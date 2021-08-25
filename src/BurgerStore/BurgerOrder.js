@@ -7,13 +7,10 @@ class BurgerOrder extends Component {
 	render() {
 		const { topping, onHandleChangeTopping, order, onHandleReset } = this.props;
 		let totalPrice = 0;
-		for (let orderItem in order) {
 			for (let toppingItem of topping) {
-				if (orderItem === toppingItem.key) {
-					totalPrice += order[orderItem] * toppingItem.price;
-				}
+					totalPrice += order[toppingItem.key] * toppingItem.price;
 			}
-		}
+
 		return (
 			<div>
 				<table class="table table-l table-borderless caption-top ">
